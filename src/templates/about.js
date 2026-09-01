@@ -8,7 +8,7 @@ export function renderAbout() {
     body: `
 <!-- HERO -->
 <section style="min-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 88px;background:#0d0c0a;position:relative;overflow:hidden;">
-  <img src="/uploads/about-hero-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+  <img src="/uploads/about-hero-bg.jpg" alt="" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
   <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,2,0.95) 0%,rgba(6,4,2,0.6) 50%,rgba(6,4,2,0.35) 100%);pointer-events:none;z-index:1;"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;" xmlns="http://www.w3.org/2000/svg">
     <defs><pattern id="about-tex" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect x="0" y="0" width="1" height="48" fill="rgba(184,147,90,0.055)"></rect></pattern></defs>
@@ -57,7 +57,7 @@ export function renderAbout() {
       ].map((v, i) => `
 <div style="${i < 2 ? 'border-right:1px solid rgba(184,147,90,0.18);' : ''}">
   <div style="aspect-ratio:4/3;overflow:hidden;">
-    <img src="${v.img}" alt="${v.title}" style="width:100%;height:100%;object-fit:cover;filter:grayscale(0.3);">
+    <img src="${v.img}" alt="${v.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;filter:grayscale(0.3);">
   </div>
   <div style="padding:36px;">
     <h3 style="font-size:20px;font-weight:700;color:#f0ebe0;margin-bottom:16px;text-transform:uppercase;letter-spacing:-0.01em;">${v.title}</h3>

@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { compress } from 'hono/compress'
 import { renderHome } from './templates/home.js'
 import { renderCollection } from './templates/collection.js'
 import { renderProduct } from './templates/product.js'
@@ -8,6 +9,24 @@ import { renderContact } from './templates/contact.js'
 import { products } from './data/products.js'
 
 const app = new Hono()
+
+// Gzip/Brotli compress all responses
+app.use('*', compress())
+
+// Long-lived cache on images (1 year) — fingerprint changes when files change
+app.use('/uploads/*', async (c, next) => {
+  await next()
+  c.header('Cache-Control', 'public, max-age=31536000, immutable')
+})
+
+// Short cache on HTML pages — fresh content, but reuse if unchanged
+app.use('*', async (c, next) => {
+  await next()
+  const ct = c.res.headers.get('Content-Type') || ''
+  if (ct.includes('text/html')) {
+    c.header('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600')
+  }
+})
 
 const html = (content) => new Response(content, { headers: { 'Content-Type': 'text/html; charset=utf-8' } })
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } })

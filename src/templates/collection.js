@@ -11,7 +11,7 @@ export function renderCollection(activeCat = 'all') {
 <a href="/product/${p.slug}" data-cat="${p.cat}" class="product-card" style="background:#1a1815;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;text-decoration:none;transition:background 200ms;"
   onmouseover="this.style.background='#201e1a'" onmouseout="this.style.background='#1a1815'">
   <div style="aspect-ratio:1;position:relative;overflow:hidden;background:#252018;">
-    <img src="${p.img}" alt="${p.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 400ms ease;"
+    <img src="${p.img}" alt="${p.name}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 400ms ease;"
       onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     <div style="position:absolute;top:14px;left:14px;padding:5px 12px;background:rgba(15,14,12,0.72);border:1px solid rgba(184,147,90,0.2);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#b8935a;">${p.catLabel}</div>
   </div>

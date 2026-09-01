@@ -11,7 +11,7 @@ const DIAGONAL_TEXTURE = (id) => `
 const catCard = ({ col, row, img, imgId, kicker, name, href = '/collection' }) => `
 <a href="${href}" data-cat="${imgId}" style="grid-column:${col};grid-row:${row};overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:${col.includes('/') ? '40px' : '28px'};cursor:pointer;background:#1a1815;position:relative;"
   onmouseover="this.style.boxShadow='inset 0 0 0 3px #c9a96e'" onmouseout="this.style.boxShadow='none'">
-  <img src="${img}" alt="${name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <img src="${img}" alt="${name}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
   <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,2,0.92) 0%,rgba(6,4,2,0.45) 50%,rgba(6,4,2,0.1) 100%);pointer-events:none;"></div>
   <div style="position:relative;z-index:1;">
     <div style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#b8935a;margin-bottom:${col.includes('/') && row === '1/3' ? '14px' : '10px'};">${kicker}</div>
@@ -49,7 +49,7 @@ export function renderHome() {
         </div>
       </div>
       <div style="flex-shrink:0;animation:fadeUp 700ms 120ms ease both;">
-        <img src="/uploads/logo-1788168413553-yoaq.jpeg" alt="The Old Country Customs" style="width:200px;height:200px;object-fit:cover;border-radius:50%;border:1px solid rgba(184,147,90,0.22);">
+        <img src="/uploads/logo-1788168413553-yoaq.jpeg" alt="The Old Country Customs" fetchpriority="high" style="width:200px;height:200px;object-fit:cover;border-radius:50%;border:1px solid rgba(184,147,90,0.22);">
       </div>
     </div>
     <div style="margin-top:72px;display:flex;align-items:center;gap:24px;animation:fadeUp 700ms 300ms ease both;">
